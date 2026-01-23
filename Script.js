@@ -148,3 +148,53 @@ document.addEventListener('scroll', function() {
         });
     });
 });
+
+/* --- LÓGICA DO LIGHTBOX (TELA CHEIA) --- */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('fullscreen-overlay');
+    const fullImg = document.getElementById('fullscreen-img');
+    const closeBtn = document.getElementById('close-fullscreen');
+    
+    // Função para abrir o Lightbox
+    function openLightbox(src) {
+        fullImg.src = src;
+        overlay.classList.add('active'); // Mostra o overlay
+    }
+
+    // Função para fechar o Lightbox
+    function closeLightbox() {
+        overlay.classList.remove('active'); // Esconde o overlay
+        setTimeout(() => {
+            fullImg.src = ''; // Limpa a imagem após fechar
+        }, 300);
+    }
+
+    // 1. Detectar clique nas imagens do Popup (Usando delegação de eventos)
+    // Isso garante que funcione mesmo se a imagem for carregada dinamicamente
+    document.body.addEventListener('click', function(e) {
+        // Verifica se clicou em uma imagem que está dentro de um modal ou carrossel
+        if (e.target.tagName === 'IMG' && 
+           (e.target.closest('.modal-content') || e.target.closest('.carousel-item'))) {
+            
+            openLightbox(e.target.src);
+        }
+    });
+
+    // 2. Fechar ao clicar no X
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // 3. Fechar ao clicar no fundo preto (fora da imagem)
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            closeLightbox();
+        }
+    });
+
+    // 4. Fechar ao apertar a tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+});

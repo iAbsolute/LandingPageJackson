@@ -997,3 +997,63 @@ footer {
     /* Garante que o fundo continue branco */
     background-color: #fff; 
 }
+
+/* --- LIGHTBOX (IMAGEM EM TELA CHEIA) --- */
+/* 1. O Fundo Preto */
+#fullscreen-overlay {
+    display: none; /* Começa invisível */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Fundo quase preto */
+    z-index: 9999; /* Fica na frente de TUDO, até do popup */
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Para animação */
+    transition: opacity 0.3s ease;
+}
+
+/* Quando estiver ativo (via JS) */
+#fullscreen-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* 2. A Imagem Grande */
+#fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+#fullscreen-overlay.active img {
+    transform: scale(1); /* Efeito de zoom ao abrir */
+}
+
+/* 3. O Botão de Fechar (X) */
+#close-fullscreen {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10000;
+}
+
+#close-fullscreen:hover {
+    color: #A2D5C6; /* Sua cor de destaque */
+}
+
+/* 4. Mudar cursor para Lupa nas imagens do Popup */
+.modal-body img, .carousel-item img {
+    cursor: zoom-in; /* Mostra lupa com + */
+}
