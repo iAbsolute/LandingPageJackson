@@ -1,0 +1,999 @@
+/* --- CSS: Variáveis e Reset --- */
+:root {
+    --bg-color: #ffffff;
+    --bg-alt: #f8f9fa; /* Cinza muito claro para seções alternadas */
+    --text-main: #2c2c2c;
+    --text-light: #666666;
+    --accent: #2c3e50; /* Um azul/cinza concreto para destaque */
+    --border: #e0e0e0;
+    --font-main: 'Inter', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-main); /* Cor do nome Jackson Santana */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- Elementos Globais --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- TÍTULOS DE SEÇÃO (Estilo Etiqueta Cinza) --- */
+.section-title {
+    /* 1. Centralização (O pulo do gato para centralizar sem mexer no pai) */
+    display: table; 
+    margin: 0 auto 50px auto; /* "auto" nas laterais centraliza o bloco */
+    
+    /* 2. Visual de Etiqueta (Igual Formação/Experiência) */
+    background-color: #000000; /* Cinza */
+    color: #fff;            /* Texto Branco */
+    padding: 8px 24px;      /* Espaço interno */
+    border-radius: 6px;     /* Bordas arredondadas */
+    
+    /* 3. Tipografia */
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Remove qualquer alinhamento de texto antigo que possa atrapalhar */
+    text-align: center;
+}
+
+/* 4. REMOVE A LINHA LARANJA ANTIGA */
+.section-title::after {
+    display: none; /* ou content: none; */
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* Ajuste para os ícones dentro dos novos Títulos Principais */
+.section-title i {
+    color: var(--orange-accent); /* Deixa o ícone laranja */
+    margin-right: 15px; /* Espaço entre o ícone e o texto */
+}
+
+/* --- Animação de Scroll (Fade In) --- */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.5s ease-out, transform 0.8s ease-out;
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- HEADER (MENU SUPERIOR) --- */
+#header {
+    /* GARANTE QUE FIQUE FIXO NO TOPO */
+    position: fixed !important; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Fica na frente de tudo */
+    
+    /* COMEÇA ESCONDIDO (Jogado para cima) */
+    transform: translateY(-100%);
+    transition: transform 0.4s ease-in-out;
+    
+    /* VISUAL */
+    background: #fff;
+    border-color: var(--orange-accent); /* Borda fica laranja/iluminada */
+    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.048); /* Brilho laranja */
+    height: 60px; /* Altura fixa para não espremer */
+    
+    /* CENTRALIZAÇÃO DOS ITENS */
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+}
+
+/* Quando rolar a tela, o JS adiciona essa classe e ele aparece */
+#header.header-visible {
+    transform: translateY(0);
+}
+
+/* Ajuste do Container interno para separar Logo e Links */
+#header .container {
+    display: flex;
+    justify-content: space-between; /* Logo na esq, Menu na dir */
+    align-items: center;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-main);
+}
+
+/* --- LINKS DO HEADER (Texto Simples) --- */
+
+.nav-links {
+    display: flex;
+    gap: 30px; /* Voltei o espaçamento original para ficar elegante */
+    align-items: center;
+}
+
+.nav-links a {
+    /* Tipografia */
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #001F3D; /* Verde Morbido */
+    text-decoration: none;
+    
+    /* REMOVENDO TUDO QUE É DE BOTÃO */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0; 
+    
+    /* Transição suave apenas da COR */
+    transition: color 0.3s ease;
+}
+
+/* HOVER (Ao passar o mouse) */
+.nav-links a:hover {
+    color: #A2D5C6; /* Apenas muda a cor para Laranja */
+    
+    /* Garante que não tenha movimento nenhum */
+    transform: none; 
+    box-shadow: none;
+}
+
+/* --- Hero Section --- */
+#home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #fbfbfb 0%, #ffffff 100%);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+    color: #0D1164;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #0D1164;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: transparent;
+    border: 2px solid var(--text-main);
+    color: var(--text-main);
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--text-main);
+    color: #fff;
+}
+
+/* --- SEÇÃO SOBRE MIM (Design Estilo Card) --- */
+#sobre {
+    /* 1. O Fundo Laranja */
+    background-color: #A2D5C6; /* Fundo Azul */
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* O Cartão Branco Flutuante */
+.about-card {
+    background-color: #fff;
+    display: flex; /* Coloca imagem e texto lado a lado */
+    width: 100%;
+    max-width: 1000px; /* Limita a largura para ficar elegante */
+    margin: 0 auto;
+    
+    /* Arredondamento e Sombra Profunda */
+    border-radius: 15px; /* Cantos levemente arredondados */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Sombra forte para destacar do laranja */
+    overflow: hidden; /* Garante que a imagem não saia da borda */
+}
+
+/* --- LADO ESQUERDO: IMAGEM --- */
+.about-image-wrapper {
+    flex: 1; /* Ocupa metade do cartão */
+    min-height: 450px; /* Garante altura mínima */
+    position: relative;
+}
+
+.about-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a foto preencher todo o espaço sem distorcer */
+    display: block;
+}
+
+/* --- LADO DIREITO: TEXTO --- */
+.about-text-content {
+    flex: 1.2; /* Ocupa um pouco mais da metade */
+    padding: 60px 50px; /* Espaçamento interno generoso */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    text-align: left;
+}
+
+/* A "Tag" Sobre mim */
+.about-tag {
+    background-color: #000000; /* Fundo Cinza */
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    align-self: flex-start; /* Alinha na esquerda */
+    display: inline-block;
+    border-radius: 5px;
+}
+
+/* O Nome (Jackson Santana) */
+.about-text-content h2 {
+    font-size: 2.8rem; /* Fonte bem grande */
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0D1164;
+    line-height: 1.1;
+}
+
+.about-text-content p {
+    color: #0D1164;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Área do Botão (Onde estava o "Subscribe") */
+.about-btn-area {
+    margin-top: 30px;
+    padding-top: 20px;
+}
+
+/* Responsividade (Para Celular) */
+@media (max-width: 768px) {
+    .about-card {
+        flex-direction: column; /* Coloca um embaixo do outro */
+        max-width: 90%;
+    }
+
+    .about-image-wrapper {
+        height: 300px; /* Altura fixa para a foto no celular */
+        flex: none;
+    }
+
+    .about-text-content {
+        padding: 40px 30px;
+    }
+
+    .about-text-content h2 {
+        font-size: 2rem;
+    }
+}
+
+/* --- SEÇÃO CURRÍCULO (Fundo Laranja + Único Cartão Branco) --- */
+#resume {
+    background-color: #A2D5C6; /* Fundo Azul */
+    padding: 80px 0;
+}
+
+/* O Grande Cartão Branco */
+.content-card {
+    background-color: #fff;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 50px; /* Espaçamento interno generoso */
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    
+    /* Layout interno */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container de cada seção interna (Formação e Experiência) */
+/* --- TÍTULOS ESTILO ETIQUETA (Igual "Sobre Mim") --- */
+/* 1. Ajuste no container para centralizar o título */
+.resume-section {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center; /* Isso centraliza a etiqueta na tela */
+}
+
+/* 2. O estilo da etiqueta cinza */
+.card-title {
+    /* Comportamento de Caixa */
+    display: inline-block; /* Ocupa apenas o tamanho do texto, não a linha toda */
+    background-color: #000000; /* Fundo Cinza (ajuste para #7f8c8d se quiser mais azulado) */
+    color: #fff; /* Texto Branco */
+    
+    /* Espaçamento e Bordas */
+    padding: 8px 24px; /* Altura e Largura interna da etiqueta */
+    border-radius: 6px; /* Cantos levemente arredondados */
+    margin: 0 auto 40px auto; /* Centraliza e empurra os cards para baixo */
+    
+    /* Tipografia (Fonte menor e caixa alta) */
+    font-size: 1.2rem; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Remove estilos antigos de título */
+    border: none;
+    position: relative;
+}
+
+/* Espaçador entre Formação e Experiência */
+.spacer-internal {
+    height: 60px; /* Distância entre o fim da formação e o título da experiência */
+    width: 100%;
+}
+
+/* --- ESTILO DOS CARDS INTERNOS (Mantém o cinza claro que fizemos) --- */
+.horizontal-timeline.centered-timeline {
+    display: flex;
+    justify-content: flex-start; /* Alinha os cards na esquerda */
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.content-card .item-content {
+    background-color: #ffff; 
+    border: 1px solid #e9ecef;
+    box-shadow: none;
+}
+
+.content-card .timeline-item:hover .item-content {
+    background-color: #fff;
+    border-color: #0D1164;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .content-card { padding: 40px 20px; }
+    .card-title { font-size: 1.8rem; text-align: center; } /* No celular fica centralizado */
+    .horizontal-timeline.centered-timeline { justify-content: center; }
+}
+
+/* --- SEÇÃO HABILIDADES --- */
+
+#habilidades {
+    background-color: #fff; /* ou a cor de fundo que você preferir */
+    padding: 80px 0;
+}
+
+/* 1. O Container que deixa lado a lado */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* 2. O Card Individual (Branco com efeito) */
+.skill-card {
+    background-color: #fff;
+    padding: 30px 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    
+    /* Sombra e Transição */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.skill-card i {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #000;
+    transition: color 1.5s ease;
+}
+
+.skill-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    transition: color 1.5s ease;
+}
+
+/* 3. Efeito Hover (Passar o mouse) */
+.skill-card:hover {
+    transform: translateY(-10px); /* Sobe */
+    border-color: #0D1164;        /* Borda Azul */
+    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.2); /* Brilho */
+}
+
+.skill-card:hover i, 
+.skill-card:hover h4 {
+    color: #001F3D; /* Ícone e Texto Azul */
+}
+
+/* --- ATIVAR EFEITO DE COR NAS HABILIDADES --- */
+
+/* 1. Garante que a imagem comece cinza dentro do card de habilidade */
+.skill-card .internal-logo {
+    background-color: transparent; /* Sem fundo cinza */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-card .internal-logo img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    
+    /* Começa Preto e Branco */
+    filter: grayscale(100%); 
+    opacity: 0.6;
+    transition: all 1.5s ease;
+}
+
+/* 2. Quando passar o mouse no Card, a imagem ganha cor */
+.skill-card:hover .internal-logo img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --- SEÇÃO PROJETOS (Grade Flexível) --- */
+
+#projetos {
+    background-color: #fff; /* Fundo cinza claro para diferenciar */
+    padding: 80px 0;
+}
+
+/* 1. O Container Flex (A Fila Horizontal) */
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite pular para a linha de baixo quando encher */
+    justify-content: center; /* Centraliza os cards se não preencherem a linha toda */
+    gap: 30px; /* Espaço entre os cards */
+    width: 100%;
+}
+
+/* 2. O Card do Projeto (Estilo igual Habilidades) */
+.project-card {
+    background-color: #fff;
+    padding: 20px; /* Padding um pouco menor para a capa ficar maior */
+    width: 300px; /* Largura fixa para ficarem uniformes */
+    
+    border: 1px solid #eee;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    
+    /* Efeitos de Transição */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 3. A Imagem de Capa */
+.project-cover {
+    width: 100%;
+    height: 180px; /* Altura fixa para todas as capas ficarem iguais */
+    margin-bottom: 20px;
+    border-radius: 6px;
+    overflow: hidden; /* Corta a imagem se sobrar */
+    background-color: #eee;
+}
+
+.project-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche todo o espaço sem esticar */
+    
+    /* O EFEITO PEDIDO: Cinza -> Cor */
+    filter: grayscale(100%);
+    transition: all 1.5s ease;
+}
+
+/* Título do Projeto */
+.project-card h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* --- HOVER (Efeito ao passar o mouse) --- */
+.project-card:hover {
+    transform: translateY(-10px); /* Flutuar */
+    border-color: #0D1164;        /* Borda Laranja */
+    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.2); /* Sombra Laranja */
+}
+
+.project-card:hover .project-cover img {
+    filter: grayscale(0%); /* Imagem ganha cor */
+    transform: scale(1.05); /* Um leve zoom na imagem fica elegante */
+}
+
+.project-card:hover h4 {
+    color: #001F3D; /* Texto fica Azul*/
+}
+
+/* Responsividade para Celular */
+@media (max-width: 768px) {
+    .project-card {
+        width: 100%; /* No celular ocupa a largura toda */
+        max-width: 350px;
+    }
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #A2D5C6;
+    color: #000000;
+    padding: 25px 0;
+    text-align: center;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    margin: 0 10px;
+    color: #000000;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: #000000;
+}
+
+/* --- Responsividade --- */
+/* 1. Esconde o ícone no computador */
+#menu-icon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+/* 2. Configuração apenas para celular/tablet */
+@media (max-width: 768px) {
+    
+    /* Mostra o ícone */
+    #menu-icon {
+        display: block; 
+    }
+
+    /* Estiliza o menu quando estiver no modo mobile */
+    .nav-links {
+        /* Posição e Layout */
+        position: absolute;
+        top: 60px; /* Mesma altura do Header */
+        right: 0;
+        width: 100%;
+        background-color: #fff;
+        flex-direction: column; /* Links um embaixo do outro */
+        align-items: center;
+        padding: 20px 0;
+        gap: 25px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        
+        /* ANIMAÇÃO DE APARECER */
+        /* Começa escondido (display: none ou transform) */
+        display: none; 
+        z-index: 9998;
+    }
+
+    /* Classe que o JavaScript vai adicionar para mostrar o menu */
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+}
+
+/* Pequena animação suave */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Modal / Pop-up (Abertura Suave) --- */
+
+.modal {
+    /* Layout fixo na tela */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro */
+    backdrop-filter: blur(4px); /* Desfoque leve no fundo */
+    
+    /* Centralização */
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+
+    /* ESTADO INICIAL (Escondido) */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none; /* Impede clicar quando invisível */
+    
+    /* A transição suave do fundo escuro */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* ESTADO ABERTO (Adicionado via JS) */
+.modal.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all; /* Libera o clique */
+}
+
+/* --- A CAIXA BRANCA DE CONTEÚDO (Correção da Tremida) --- */
+.modal-content {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+
+    /* ESTADO INICIAL DA ANIMAÇÃO */
+    /* Removemos o 'scale(0.95)' que causava a tremida */
+    transform: translateY(40px); 
+    opacity: 0;
+    
+    /* Melhora a renderização do texto para evitar borrão */
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    
+    /* A transição suave apenas de posição e opacidade */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* FINAL DA ANIMAÇÃO (Quando abre) */
+.modal.open .modal-content {
+    /* Apenas move para o lugar certo, sem mudar o tamanho */
+    transform: translateY(0); 
+    opacity: 1;
+}
+
+/* Botão de Fechar (X) */
+.close-modal {
+    color: #bbb;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--orange-accent);
+    transform: rotate(90deg);
+}
+
+/* Tipografia Interna do Modal */
+#modal-title {
+    font-size: 1.5rem;
+    color: #0D1164;
+    margin-bottom: 5px;
+}
+#modal-subtitle {
+    font-size: 0.9rem;
+    color: #A2D5C6;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+#modal-body {
+    font-size: 1rem;
+    color: #0D1164;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Carrossel Interno do Modal (caso use fotos) */
+.modal-carousel-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    display: none;
+}
+.modal-carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+.modal-img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background-color: #fff;
+}
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--orange-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.modal-nav-btn:hover { transform: translateY(-50%) scale(1.1); }
+.modal-nav-btn.prev { left: 10px; }
+.modal-nav-btn.next { right: 10px; }
+
+/* --- CSS Timeline: Cartão Único (Logo dentro) --- */
+
+:root {
+    --orange-accent: #0D1164
+}
+
+.horizontal-section {
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.section-header.centered-header h3 {
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-main);
+}
+.section-header h3 i { color: var(--orange-accent); }
+
+/* Grid Centralizado */
+.horizontal-timeline.centered-timeline {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+}
+
+/* Container do Item (Clica aqui) */
+.timeline-item {
+    width: 280px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- O CARTÃO ÚNICO (Branco) --- */
+.item-content {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee; /* Borda inicial cinza */
+    padding: 20px;
+    text-align: center;
+    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%; /* Garante altura igual */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+/* Animação de Hover no Cartão Inteiro */
+.timeline-item:hover .item-content {
+    transform: translateY(-10px); /* Sobe tudo junto */
+    border-color: var(--orange-accent); /* Borda fica laranja/iluminada */
+    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.15); /* Brilho laranja */
+}
+
+/* --- LOGO INTERNA (Ajuste de Velocidade) --- */
+.internal-logo {
+    width: 100%;
+    height: 80px;
+    background-color: transparent; 
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 0px solid transparent; /* Borda invisível inicial para não "pular" */
+        /* AQUI ESTÁ O SEGREDO: 0.6s deixa a ida e a volta lentas */
+    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.internal-logo img {
+    max-width: 60%;
+    max-height: 60%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    /* A imagem também muda devagar junto com o fundo */
+    transition: all 1s ease;
+}
+
+/* Hover na Logo (Quando passa o mouse no card) */
+.timeline-item:hover .internal-logo {
+    background-color: transparent; 
+    border-color: transparent; /* Cinza suave na borda */
+    box-shadow: none; /* Sombra leve */
+}
+
+.timeline-item:hover .internal-logo img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --- TEXTOS --- */
+.text-area {
+    width: 100%;
+}
+
+.resume-date {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #0D1164;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.timeline-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #0D1164;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.institution, .see-more {
+    color: #0D1164; 
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.see-more {
+    font-size: 0.75rem;
+    color: #0D1164;
+    font-weight: 800;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.timeline-item:hover .see-more {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .horizontal-timeline.centered-timeline {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* --- BOTÕES CENTRAIS DA HOME --- */
+/* Centraliza o grupo de botões */
+.botoes-home {
+    display: flex;
+    justify-content: center; /* Alinha no centro */
+    gap: 20px; /* Espaço entre os botões */
+    margin-top: 30px;
+    flex-wrap: wrap; /* Ajusta se a tela for pequena */
+}
+
+/* --- BOTÕES PADRONIZADOS (Home e Sobre Mim) --- */
+/* Aplica o visual dos Cards de Formação em ambos os botões */
+
+.btn, .btn-central {
+    /* 1. Estrutura e Tamanho */
+    display: inline-block;
+    padding: 15px 35px;
+    margin-top: 10px; /* Garante um respiro se tiver texto em cima */
+    
+    /* 2. Visual Base (Caixa Branca Suave) */
+    background-color: #fff;       
+    color: #333;                  
+    border: 1px solid #eee;       
+    border-radius: 12px;          
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    
+    /* 3. Tipografia */
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    cursor: pointer;
+    
+    /* 4. Animação Física (O "pulo" suave) */
+    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- EFEITO AO PASSAR O MOUSE (HOVER) --- */
+.btn:hover, .btn-central:hover {
+    /* Flutua para cima */
+    transform: translateY(-5px); 
+    
+    /* Borda e Texto ficam Laranjas */
+    border-color: #0D1164; 
+    color: #0D1164; 
+    
+    /* Sombra Laranja Brilhante */
+    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.2); 
+    
+    /* Garante que o fundo continue branco */
+    background-color: #fff; 
+}
