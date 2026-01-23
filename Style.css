@@ -1057,3 +1057,91 @@ footer {
 .modal-body img, .carousel-item img {
     cursor: zoom-in; /* Mostra lupa com + */
 }
+
+/* =========================================
+   VERSÃO MOBILE (CELULARES)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* 1. ACERTAR AS BORDAS (Espaçamento Lateral) */
+    .container {
+        width: 100%;
+        padding-left: 20px;  /* Respiro na esquerda */
+        padding-right: 20px; /* Respiro na direita */
+        box-sizing: border-box; /* Garante que o padding não estoure a tela */
+    }
+
+    /* 2. AJUSTAR OS TÍTULOS (Diminuir as caixas pretas) */
+    .section-title {
+        font-size: 0.5rem !important;      /* Diminui a fonte */
+        padding: 4px 12px !important;     /* Diminui o tamanho da caixa */
+        width: fit-content !important;            /* Deixa a largura automática */
+        max-width: 90%;                     /* Garante que não estoure a tela se o texto for longo */
+        display: inline-block;  /* A caixa fica do tamanho do texto */
+        margin-bottom: 30px;    /* Menos espaço embaixo */
+        
+        /* Centraliza a caixa na tela */
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;    /* Tenta manter em uma linha se der */
+    }
+
+    /* 3. SEÇÃO SOBRE MIM (Foto em cima, Texto embaixo) */
+    #sobre .container {
+        /* Se você usar flexbox no desktop, aqui mudamos a direção */
+        display: flex;
+        flex-direction: column; /* Um embaixo do outro */
+        align-items: center;    /* Centraliza tudo */
+        text-align: center;     /* Texto centralizado */
+    }
+
+    /* Ajuste da Foto de Perfil no Mobile */
+    .about-img img {
+        width: 150px;       /* Tamanho menor para celular */
+        height: 150px;
+        margin-bottom: 20px; /* Espaço entre foto e texto */
+        margin-right: 0;     /* Remove margem lateral antiga */
+    }
+    
+    /* Justifica o texto apenas no mobile para ficar quadradinho e bonito */
+    .about-text-content p {
+        text-align: justify; 
+        font-size: 0.95rem; /* Fonte levemente menor para leitura */
+    }
+
+    /* 4. CARDS (Habilidades, Projetos e Experiência) */
+    /* Força os cards a ocuparem a largura total disponível */
+    .skill-card, 
+    .project-card, 
+    .timeline-item,
+    .content-card {
+        width: 100% !important; /* Força largura total */
+        margin-bottom: 20px;    /* Espaço entre um e outro */
+    }
+
+    /* Ajuste do Grid de Habilidades para 1 ou 2 colunas no máx */
+    .skills-container {
+        display: grid;
+        /* Cria colunas automáticas mas com tamanho mínimo menor */
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+        gap: 15px;
+    }
+
+    /* 5. PROJETOS RECENTES */
+    .projects-grid {
+        flex-direction: column; /* Um projeto embaixo do outro */
+        align-items: center;
+    }
+
+    /* 6. CABEÇALHO / MENU */
+    header .container {
+        padding: 15px 20px; /* Ajuste do topo */
+    }
+    
+    /* Se o nome "Jackson Santana" estiver muito grande */
+    .logo {
+        font-size: 1.5rem;
+    }
+}
