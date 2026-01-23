@@ -1061,9 +1061,7 @@ footer {
 /* =========================================
    VERSÃO MOBILE (CELULARES)
    ========================================= */
-
 @media (max-width: 768px) {
-
     /* 1. ACERTAR AS BORDAS (Espaçamento Lateral) */
     .container {
         width: 100%;
