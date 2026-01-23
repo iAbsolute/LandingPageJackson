@@ -1060,3 +1060,116 @@ footer {
     cursor: zoom-in; /* Mostra lupa com + */
 }
 
+/* =========================================
+   VERSÃO MOBILE (CELULARES) - AJUSTADA
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* 1. ACERTAR AS BORDAS */
+    .container {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    /* 2. AJUSTAR OS TÍTULOS (Habilidades/Projetos) */
+    .section-title {
+        font-size: 1.2rem !important;
+        padding: 4px 12px !important;
+        width: fit-content !important;
+        max-width: 90%;
+        display: table; /* Mudado para table para centralizar melhor sem hacks */
+        margin: 0 auto 30px auto; /* Centraliza horizontalmente */
+        white-space: nowrap;
+    }
+
+    /* 3. TÍTULOS DE ETIQUETA (Formação/Experiência) */
+    .card-title {
+        font-size: 1.2rem !important;
+        padding: 6px 16px !important;
+        width: fit-content !important;
+        display: table !important; /* Garante que a caixa não estique */
+        margin: 0 auto 30px auto !important; /* Margem automática centraliza */
+        white-space: nowrap;
+    }
+
+    /* 4. SEÇÃO SOBRE MIM */
+    #sobre .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-img img {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+    
+    .about-text-content p {
+        text-align: justify; 
+        font-size: 0.95rem;
+    }
+
+    /* --- [CORREÇÃO 1] CENTRALIZAR BOTÃO SOBRE MIM --- */
+    .about-btn-area {
+        display: flex;
+        justify-content: center; /* Alinha o botão no centro */
+        width: 100%;
+    }
+
+    /* 5. CARDS GERAIS (Largura Total) */
+    .skill-card, 
+    .project-card, 
+    .content-card {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+
+    /* Grid de Habilidades */
+    .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+        gap: 15px;
+    }
+
+    /* Projetos */
+    .projects-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 6. CABEÇALHO / MENU */
+    header .container { padding: 15px 20px; }
+    .logo { font-size: 1.5rem; }
+
+    /* --- [CORREÇÃO 2] CARDS DE EXPERIÊNCIA (Ficam Iguais) --- */
+    .horizontal-timeline.centered-timeline {
+        display: flex !important;
+        flex-direction: column !important;
+        
+        /* MUDANÇA CHAVE: 'stretch' obriga todos a terem a mesma largura */
+        align-items: stretch !important; 
+        
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    /* Garante que o item ocupe o espaço dado pelo 'stretch' */
+    .timeline-item {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* --- [CORREÇÃO 3] CONTEÚDO DENTRO DO CARD (Centralizado) --- */
+    /* Como esticamos o card, agora precisamos mandar o texto ir para o meio */
+    .timeline-item .item-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centraliza Imagem e Blocos */
+        text-align: center;  /* Centraliza Texto */
+    }
+}
