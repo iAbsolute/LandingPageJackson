@@ -1090,7 +1090,7 @@ footer {
         padding: 6px 16px !important;
         width: fit-content !important;
         display: table !important; /* Garante que a caixa não estique */
-        margin: 0 auto 30px auto !important; /* Margem automática centraliza */
+        margin: 0 auto 25px auto !important; /* Margem automática centraliza */
         white-space: nowrap;
     }
 
