@@ -1089,6 +1089,9 @@ footer {
         font-size: 1.2rem !important;
         padding: 6px 16px !important;
         width: fit-content !important;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
         display: table !important; /* Garante que a caixa não estique */
         margin: 0 auto 25px auto !important; /* Margem automática centraliza */
         white-space: nowrap;
