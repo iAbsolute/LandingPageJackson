@@ -1086,15 +1086,18 @@ footer {
 
     /* 3. TÍTULOS DE ETIQUETA (Formação/Experiência) */
     .card-title {
-        font-size: 1.2rem !important;
-        padding: 6px 16px !important;
-        width: fit-content !important;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%);
-        display: table !important; /* Garante que a caixa não estique */
-        margin: 0 auto 25px auto !important; /* Margem automática centraliza */
-        white-space: nowrap;
+        font-size: 1.0rem !important;      /* Fonte ajustada */
+        white-space: nowrap !important;     /* Texto numa linha só */
+        display: inline-block !important;   /* Comporta-se como bloco */
+        width: auto !important;             /* Largura do texto */
+        /* --- ALINHAMENTO À ESQUERDA (NO LADO) --- */
+        margin-left: 0 !important;          /* Cola na esquerda */
+        margin-right: auto !important;      /* Espaço livre na direita */
+        margin-bottom: 20px !important;     /* Espaço embaixo */
+        /* Reseta qualquer centralização antiga */
+        position: static !important;
+        transform: none !important;
+        left: auto !important;
     }
 
     /* 4. SEÇÃO SOBRE MIM */
